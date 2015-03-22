@@ -1,0 +1,30 @@
+{
+  "name": "mcms-node-named-routes",
+  "description": "mcms node named routes.",
+  "version": "0.0.1",
+  "keywords": [
+    "mcms",
+    "framework",
+    "config",
+    "cms",
+    "routes"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mbouclas/mcms-node-named-routes"
+  },
+  "directories": {
+    "lib": "./lib/"
+  },
+  "bugs": {
+    "url": "https://github.com/mbouclas/mcms-node-named-routes/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Michael Bouclas",
+    "email": "mbouclas@gmail.com",
+    "url": "http://www.net-tomorrow.com/"
+  },
+  "dependencies": {
+  }
+}
