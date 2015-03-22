@@ -1,42 +1,43 @@
-mcms-node-config-loader
+mcms-node-named-routes
 ======================
 
-Easily load config files for multiple environments
+Dead simple approach on creating named routes for express 4
 
 ## What does it do
-This packages allows you to easily load the right config file depending on the environment you're working on
+This packages allows you to add named routes on express 4.
 
 ## Install
-npm install mcms-node-config-loader
-
-## Folder structure
-The library expects a structure like so :
-```
-/configDir
-        /devEnv
-            configFile.json
-        /anotherEnv
-            configFile.json
-configFile.json
-anotherConfigFile.json
-```
-
-Every file under the configDir is loaded as production environment. If you create a subdirectory named after an environment you
-have defined before calling the module, it will overwrite the default config. For example, you have a mysql.json 
-config under the configDir with your mySQL connection settings. If you create the same file with different settings under
-the configDir/development directory, when you're working on your dev machine theses settings will be loaded instead
+npm install mcms-node-named-routes
 
 ## Usage
-check [the examples folder](https://github.com/mbouclas/mcms-node-config-loader/tree/master/examples) for usage scenarios
+check [the examples folder](https://github.com/mbouclas/mmcms-node-named-routes/tree/master/examples) for usage scenarios
 Initialize like so :
 ```
-var path = require("path");
-var environments = {
-    'development' : ['ubuntu','mike-PC','mint-box'],
-    'production' : 'myProductionBox'
-};
-var configLoader = require("../index").setEnv(environments);
-var Config = configLoader.loadConfig(path.join(__dirname,'./config'));
+var Route = require('mcms-node-named-routes');
+```
+Then add your routes
+
+```
+  var names = {
+    Home : '/',
+    Login : '/login',
+    Logout : '/logout',
+    Complex : '/complex/:param1/:param2'
+  };
+
+  Route.set(names);
 ```
 
-That's it, under the Config object you can now access all your settings
+Finally, if you want the reverse lookup functionality in your express templates, just add it tou the express router.
+
+```
+var router = express.Router();
+router.use(Route.use);
+```
+
+That's it, now you can use the reverse lookup in your templates like so :
+
+```
+<a href="{{ Route.url('Home') }}">Home</a>
+<a href="{{ Route.url('Complex',{param1 : 'test', param2 : 20}) }}">a more complex route</a>
+```
