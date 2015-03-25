@@ -35,6 +35,13 @@ var router = express.Router();
 router.use(Route.use);
 ```
 
+or you can use it as middleware:
+
+```
+var routes = require('./routes/index')(Route); //declare your named routes in here like the example above
+app.use('/',Route.use,routes);
+```
+
 That's it, now you can use the reverse lookup in your templates like so :
 
 ```
